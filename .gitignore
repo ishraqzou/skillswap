@@ -1,0 +1,14 @@
+# Fichiers générés (desktop)
+bin/
+obj/
+.vs/
+*.user
+
+# Configuration locale (web)
+web/config/config.php
+public/uploads/avatars/
+
+# Divers
+*.log
+.DS_Store
+Thumbs.db

@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UseWPF>true</UseWPF>
+    <RootNamespace>SkillSwap.Desktop</RootNamespace>
+    <AssemblyName>SkillSwap.Desktop</AssemblyName>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- Connecteur ADO.NET officiel MySQL / MariaDB -->
+    <PackageReference Include="MySql.Data" Version="8.3.0" />
+    <!-- Vérification des empreintes bcrypt produites par l'application web (PHP) -->
+    <PackageReference Include="BCrypt.Net-Next" Version="4.0.3" />
+    <!-- Lecture de App.config (ConfigurationManager) sous .NET moderne -->
+    <PackageReference Include="System.Configuration.ConfigurationManager" Version="8.0.0" />
+  </ItemGroup>
+
+</Project>

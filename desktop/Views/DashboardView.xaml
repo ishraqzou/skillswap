@@ -1,0 +1,105 @@
+<UserControl x:Class="SkillSwap.Desktop.Views.DashboardView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <StackPanel>
+
+            <Border Style="{StaticResource CarteStyle}" Background="#FFF7E3E3"
+                    Visibility="{Binding ADesErreurs, Converter={StaticResource BoolToVisibility}}">
+                <TextBlock Text="{Binding MessageErreur}" TextWrapping="Wrap"
+                           Foreground="{StaticResource AlertBrush}" />
+            </Border>
+
+            <Grid Margin="0,0,0,16">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <Border Grid.Column="0" Style="{StaticResource CarteStyle}" Margin="0,0,8,0"
+                        BorderThickness="4,1,1,1" BorderBrush="{StaticResource NavyBrush}">
+                    <StackPanel>
+                        <TextBlock Text="Utilisateurs inscrits" Style="{StaticResource MutedTextStyle}" />
+                        <TextBlock Text="{Binding Statistiques.NbUtilisateurs}" FontSize="28"
+                                   Style="{StaticResource MonoStyle}" FontWeight="SemiBold" />
+                    </StackPanel>
+                </Border>
+
+                <Border Grid.Column="1" Style="{StaticResource CarteStyle}" Margin="8,0"
+                        BorderThickness="4,1,1,1" BorderBrush="{StaticResource GreenBrush}">
+                    <StackPanel>
+                        <TextBlock Text="Demandes en attente" Style="{StaticResource MutedTextStyle}" />
+                        <TextBlock Text="{Binding Statistiques.NbDemandesEnAttente}" FontSize="28"
+                                   Style="{StaticResource MonoStyle}" FontWeight="SemiBold" />
+                    </StackPanel>
+                </Border>
+
+                <Border Grid.Column="2" Style="{StaticResource CarteStyle}" Margin="8,0"
+                        BorderThickness="4,1,1,1" BorderBrush="{StaticResource GoldBrush}">
+                    <StackPanel>
+                        <TextBlock Text="Certificats actifs" Style="{StaticResource MutedTextStyle}" />
+                        <TextBlock Text="{Binding Statistiques.NbCertificatsActifs}" FontSize="28"
+                                   Style="{StaticResource MonoStyle}" FontWeight="SemiBold" />
+                    </StackPanel>
+                </Border>
+
+                <Border Grid.Column="3" Style="{StaticResource CarteStyle}" Margin="8,0,0,0"
+                        BorderThickness="4,1,1,1" BorderBrush="{StaticResource AlertBrush}">
+                    <StackPanel>
+                        <TextBlock Text="Signalements en attente" Style="{StaticResource MutedTextStyle}" />
+                        <TextBlock Text="{Binding Statistiques.NbSignalementsEnAttente}" FontSize="28"
+                                   Style="{StaticResource MonoStyle}" FontWeight="SemiBold" />
+                    </StackPanel>
+                </Border>
+            </Grid>
+
+            <Border Style="{StaticResource CarteStyle}">
+                <StackPanel>
+                    <Grid Margin="0,0,0,10">
+                        <TextBlock Text="SIGNALEMENTS EN ATTENTE DE TRAITEMENT"
+                                   Style="{StaticResource LabelSectionStyle}" VerticalAlignment="Center" />
+                        <Button Content="Rafraîchir" HorizontalAlignment="Right"
+                                Style="{StaticResource BoutonSecondaireStyle}"
+                                Command="{Binding RafraichirCommand}" />
+                    </Grid>
+
+                    <DataGrid ItemsSource="{Binding SignalementsRecents}"
+                              Style="{StaticResource TableauStyle}" MaxHeight="260">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Auteur" Binding="{Binding AuteurNomComplet}" Width="*" />
+                            <DataGridTextColumn Header="Cible"  Binding="{Binding CibleAffichee}" Width="160" />
+                            <DataGridTextColumn Header="Motif"  Binding="{Binding Motif}" Width="2*" />
+                            <DataGridTextColumn Header="Date"   Binding="{Binding DateCreation, StringFormat=dd/MM/yyyy}" Width="110" />
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </StackPanel>
+            </Border>
+
+            <Border Style="{StaticResource CarteStyle}">
+                <StackPanel>
+                    <TextBlock Text="AUTRES INDICATEURS" Style="{StaticResource LabelSectionStyle}" />
+                    <UniformGrid Columns="3">
+                        <StackPanel Margin="0,0,0,10">
+                            <TextBlock Text="Compétences actives" Style="{StaticResource MutedTextStyle}" />
+                            <TextBlock Text="{Binding Statistiques.NbCompetencesActives}"
+                                       Style="{StaticResource MonoStyle}" FontSize="18" />
+                        </StackPanel>
+                        <StackPanel Margin="0,0,0,10">
+                            <TextBlock Text="Séances complétées" Style="{StaticResource MutedTextStyle}" />
+                            <TextBlock Text="{Binding Statistiques.NbSeancesTerminees}"
+                                       Style="{StaticResource MonoStyle}" FontSize="18" />
+                        </StackPanel>
+                        <StackPanel Margin="0,0,0,10">
+                            <TextBlock Text="Total des points attribués" Style="{StaticResource MutedTextStyle}" />
+                            <TextBlock Text="{Binding Statistiques.TotalPointsAttribues}"
+                                       Style="{StaticResource MonoStyle}" FontSize="18" />
+                        </StackPanel>
+                    </UniformGrid>
+                </StackPanel>
+            </Border>
+
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>

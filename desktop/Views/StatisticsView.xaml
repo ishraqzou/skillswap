@@ -1,0 +1,113 @@
+<UserControl x:Class="SkillSwap.Desktop.Views.StatisticsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <StackPanel>
+
+            <Border Style="{StaticResource CarteStyle}" Padding="14">
+                <StackPanel Orientation="Horizontal">
+                    <Button Content="Rafraîchir" Style="{StaticResource BoutonSecondaireStyle}"
+                            Command="{Binding RafraichirCommand}" />
+                    <Button Content="Exporter en CSV" Style="{StaticResource BoutonPrimaireStyle}"
+                            Command="{Binding ExporterCsvCommand}" />
+                </StackPanel>
+            </Border>
+
+            <Border Style="{StaticResource CarteStyle}"
+                    Visibility="{Binding ADesMessages, Converter={StaticResource BoolToVisibility}}">
+                <TextBlock Text="{Binding Message}" TextWrapping="Wrap" FontSize="12">
+                    <TextBlock.Style>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="Foreground" Value="{StaticResource GreenBrush}" />
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding MessageEstErreur}" Value="True">
+                                    <Setter Property="Foreground" Value="{StaticResource AlertBrush}" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </TextBlock.Style>
+                </TextBlock>
+            </Border>
+
+            <Border Style="{StaticResource CarteStyle}">
+                <StackPanel>
+                    <TextBlock Text="INDICATEURS D'ACTIVITÉ DE LA PLATEFORME"
+                               Style="{StaticResource LabelSectionStyle}" />
+                    <UniformGrid Columns="3">
+                        <StackPanel Margin="0,8,12,12">
+                            <TextBlock Text="Utilisateurs inscrits" Style="{StaticResource MutedTextStyle}" />
+                            <TextBlock Text="{Binding Statistiques.NbUtilisateurs}" Style="{StaticResource MonoStyle}" FontSize="22" />
+                        </StackPanel>
+                        <StackPanel Margin="0,8,12,12">
+                            <TextBlock Text="Comptes suspendus" Style="{StaticResource MutedTextStyle}" />
+                            <TextBlock Text="{Binding Statistiques.NbUtilisateursSuspendus}" Style="{StaticResource MonoStyle}" FontSize="22" />
+                        </StackPanel>
+                        <StackPanel Margin="0,8,0,12">
+                            <TextBlock Text="Compétences actives" Style="{StaticResource MutedTextStyle}" />
+                            <TextBlock Text="{Binding Statistiques.NbCompetencesActives}" Style="{StaticResource MonoStyle}" FontSize="22" />
+                        </StackPanel>
+                        <StackPanel Margin="0,8,12,12">
+                            <TextBlock Text="Demandes acceptées" Style="{StaticResource MutedTextStyle}" />
+                            <TextBlock Text="{Binding Statistiques.NbDemandesAcceptees}" Style="{StaticResource MonoStyle}" FontSize="22" />
+                        </StackPanel>
+                        <StackPanel Margin="0,8,12,12">
+                            <TextBlock Text="Séances complétées" Style="{StaticResource MutedTextStyle}" />
+                            <TextBlock Text="{Binding Statistiques.NbSeancesTerminees}" Style="{StaticResource MonoStyle}" FontSize="22" />
+                        </StackPanel>
+                        <StackPanel Margin="0,8,0,12">
+                            <TextBlock Text="Total des points attribués" Style="{StaticResource MutedTextStyle}" />
+                            <TextBlock Text="{Binding Statistiques.TotalPointsAttribues}" Style="{StaticResource MonoStyle}" FontSize="22" />
+                        </StackPanel>
+                        <StackPanel Margin="0,8,12,0">
+                            <TextBlock Text="Certificats actifs" Style="{StaticResource MutedTextStyle}" />
+                            <TextBlock Text="{Binding Statistiques.NbCertificatsActifs}" Style="{StaticResource MonoStyle}" FontSize="22" />
+                        </StackPanel>
+                        <StackPanel Margin="0,8,12,0">
+                            <TextBlock Text="Certificats révoqués" Style="{StaticResource MutedTextStyle}" />
+                            <TextBlock Text="{Binding Statistiques.NbCertificatsRevoques}" Style="{StaticResource MonoStyle}" FontSize="22" />
+                        </StackPanel>
+                        <StackPanel Margin="0,8,0,0">
+                            <TextBlock Text="Signalements en attente" Style="{StaticResource MutedTextStyle}" />
+                            <TextBlock Text="{Binding Statistiques.NbSignalementsEnAttente}" Style="{StaticResource MonoStyle}" FontSize="22" />
+                        </StackPanel>
+                    </UniformGrid>
+                </StackPanel>
+            </Border>
+
+            <Border Style="{StaticResource CarteStyle}">
+                <StackPanel>
+                    <TextBlock Text="RÉPARTITION DES COMPÉTENCES PAR CATÉGORIE"
+                               Style="{StaticResource LabelSectionStyle}" />
+                    <ItemsControl ItemsSource="{Binding Repartition}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Grid Margin="0,6">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="180" />
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="110" />
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Grid.Column="0" Text="{Binding Categorie}" VerticalAlignment="Center" FontSize="13" />
+                                    <ProgressBar Grid.Column="1" Height="10" Minimum="0" Maximum="100"
+                                                 Value="{Binding Pourcentage, Mode=OneWay}"
+                                                 Foreground="{StaticResource NavyBrush}"
+                                                 Background="{StaticResource PanelBrush}"
+                                                 BorderThickness="0" VerticalAlignment="Center" Margin="8,0" />
+                                    <TextBlock Grid.Column="2" VerticalAlignment="Center" FontSize="12"
+                                               Style="{StaticResource MonoStyle}">
+                                        <Run Text="{Binding NbCompetences, Mode=OneWay}" />
+                                        <Run Text=" (" /><Run Text="{Binding Pourcentage, Mode=OneWay}" /><Run Text=" %)" />
+                                    </TextBlock>
+                                </Grid>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </StackPanel>
+            </Border>
+
+            <TextBlock Style="{StaticResource MutedTextStyle}" TextWrapping="Wrap" Margin="4,0,0,0"
+                       Text="Ces indicateurs correspondent aux exigences FR-122 à FR-129 et aux règles BR-065 à BR-067. Conformément à BR-065, seules des données agrégées et anonymisées sont exploitées." />
+
+        </StackPanel>
+    </ScrollViewer>
+</UserControl>

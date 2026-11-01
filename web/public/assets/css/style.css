@@ -1,0 +1,116 @@
+/* ==========================================================================
+   SkillSwap - Feuille de style principale (système de design, Tâche 17)
+   ========================================================================== */
+
+:root{
+  --navy:#1F3A5F; --navy-dark:#152A45; --gold:#C9972F; --green:#3A7D63;
+  --cream:#FBF9F5; --ink:#222222; --alert:#B23B3B; --panel:#EFF3F7;
+}
+
+body{ font-family:'Inter',sans-serif; color:var(--ink); background:var(--cream); }
+h1,h2,h3,.display-serif{ font-family:'Fraunces',serif; }
+.mono{ font-family:'IBM Plex Mono',monospace; }
+
+.btn-navy{ background:var(--navy); border-color:var(--navy); color:#fff; }
+.btn-navy:hover{ background:var(--navy-dark); border-color:var(--navy-dark); color:#fff; }
+.btn-outline-navy{ border-color:var(--navy); color:var(--navy); }
+.btn-outline-navy:hover{ background:var(--navy); color:#fff; }
+.btn-gold{ background:var(--gold); border-color:var(--gold); color:var(--navy-dark); font-weight:600; }
+.btn-gold:hover{ background:#b5872a; border-color:#b5872a; color:var(--navy-dark); }
+.btn-green{ background:var(--green); border-color:var(--green); color:#fff; }
+.btn-green:hover{ background:#2d6350; border-color:#2d6350; color:#fff; }
+
+.navbar-skillswap{ background:var(--cream); border-bottom:1px solid #E6E1D6; }
+.navbar-skillswap .navbar-brand{ font-family:'Fraunces',serif; font-weight:700; color:var(--navy); font-size:1.5rem; }
+.navbar-skillswap .nav-link{ color:var(--navy); font-weight:500; }
+.swap-mark{ display:inline-flex; align-items:center; justify-content:center; width:34px;height:34px; border-radius:50%; background:var(--navy); color:var(--gold); margin-right:8px; font-size:1rem; }
+
+.app-nav{ background:var(--navy); min-height:100vh; width:230px; position:fixed; top:0; left:0; z-index:1030; }
+.app-nav.app-nav-admin{ background:var(--navy-dark); }
+.app-nav .brand{ font-family:'Fraunces',serif; font-weight:700; color:#fff; font-size:1.3rem; }
+.app-nav .swap-mark{ background:var(--gold); color:var(--navy-dark); }
+.app-nav .nav-link{ color:#C7D2DE; font-weight:500; border-radius:8px; padding:.55rem .9rem; }
+.app-nav .nav-link.active,.app-nav .nav-link:hover{ background:rgba(255,255,255,0.08); color:#fff; }
+.app-nav .nav-link i{ width:20px; }
+.app-nav .badge-count{ background:var(--alert); color:#fff; font-size:.68rem; border-radius:10px; padding:1px 7px; margin-left:auto; }
+.app-content{ margin-left:230px; }
+@media (max-width: 991.98px){
+  .app-nav{ display:none; }
+  .app-content{ margin-left:0; }
+}
+
+.topbar{ background:#fff; border-bottom:1px solid #ECE7DA; }
+.points-chip{ background:var(--panel); border-radius:20px; padding:6px 14px; display:inline-flex; align-items:center; gap:8px; }
+.points-chip .mono{ color:var(--navy); font-weight:600; }
+.notif-dot{ width:8px;height:8px;border-radius:50%; background:var(--alert); position:absolute; top:2px; right:2px; }
+
+.card-flat{ background:#fff; border:1px solid #ECE7DA; border-radius:14px; }
+.section-label{ color:var(--green); font-weight:700; letter-spacing:.06em; text-transform:uppercase; font-size:.72rem; }
+.skill-card{ background:#fff; border:1px solid #ECE7DA; border-radius:14px; overflow:hidden; height:100%; transition:.2s; }
+.skill-card:hover{ box-shadow:0 12px 28px rgba(31,58,95,0.12); transform:translateY(-3px); }
+.skill-card .cat-tag{ background:#EFF3F7; color:var(--navy); font-size:.72rem; font-weight:600; padding:3px 10px; border-radius:20px; }
+.skill-card .swap-for{ font-size:.8rem; color:var(--green); font-weight:600; }
+
+.avatar-lg{ width:76px;height:76px;border-radius:50%; background:var(--navy); color:#fff; display:flex; align-items:center; justify-content:center; font-size:1.6rem; font-weight:600; }
+.avatar-sm{ width:34px;height:34px;border-radius:50%; background:var(--navy); color:#fff; display:flex; align-items:center; justify-content:center; font-size:.8rem; font-weight:600; flex-shrink:0; }
+.badge-pill{ background:var(--panel); color:var(--navy); border-radius:20px; padding:4px 12px; font-size:.78rem; font-weight:600; }
+
+.badge-icon{ width:52px;height:52px;border-radius:50%; background:linear-gradient(160deg, var(--gold), #a97b1f); display:flex; align-items:center; justify-content:center; color:#fff; font-size:1.3rem; }
+.badge-icon.locked{ background:#DADADA; color:#9a9a9a; }
+
+.status-dot{ width:8px;height:8px;border-radius:50%; display:inline-block; margin-right:6px;}
+.status-active,.status-visible,.status-actif,.status-confirmee,.status-acceptee,.status-terminee{ background:var(--green);}
+.status-pause,.status-attente,.status-proposee,.status-en_attente{ background:var(--gold);}
+.status-refusee,.status-annulee,.status-suspendu,.status-revoque,.status-expiree{ background:var(--alert);}
+
+.status-pill{ border-radius:20px; padding:3px 12px; font-size:.75rem; font-weight:600; display:inline-block; }
+.status-pill.pending{ background:#FCEFD9; color:#8a6510; }
+.status-pill.active{ background:#E4F0EA; color:var(--green); }
+.status-pill.negative{ background:#F7E3E3; color:var(--alert); }
+.status-pill.neutral{ background:var(--panel); color:var(--navy); }
+
+.exchange-mini{ display:flex; align-items:center; gap:8px; font-size:.82rem; }
+.exchange-mini .swap-icon{ color:var(--green); }
+
+.activity-item{ display:flex; gap:12px; padding:10px 0; border-bottom:1px solid #F0ECE0; }
+.activity-item:last-child{ border-bottom:none; }
+.activity-icon{ width:34px;height:34px;border-radius:50%; background:var(--panel); color:var(--navy); display:flex; align-items:center; justify-content:center; flex-shrink:0; font-size:.85rem;}
+
+.table-skillswap thead{ background:var(--panel); }
+.table-skillswap th{ color:var(--navy); font-weight:700; font-size:.78rem; text-transform:uppercase; letter-spacing:.04em; border-bottom:none; }
+.table-skillswap td{ vertical-align:middle; font-size:.9rem; }
+
+.kpi-card{ border-left:4px solid var(--navy); }
+.kpi-card.alert{ border-left-color:var(--alert); }
+.kpi-card.gold{ border-left-color:var(--gold); }
+.kpi-card.green{ border-left-color:var(--green); }
+.kpi-value{ font-family:'IBM Plex Mono',monospace; font-size:2rem; font-weight:600; color:var(--navy); }
+
+.hero{
+  background: radial-gradient(1200px 500px at 85% -10%, rgba(201,151,47,0.20), transparent 60%),
+              linear-gradient(160deg, var(--navy) 0%, var(--navy-dark) 100%);
+  color:#F4EFE3; position:relative; overflow:hidden;
+}
+.hero .swap-glyph{
+  position:absolute; right:-60px; top:50%; transform:translateY(-50%);
+  font-size:22rem; color:rgba(255,255,255,0.05); font-family:'Fraunces',serif; pointer-events:none; line-height:1;
+}
+.hero h1{ font-weight:700; line-height:1.1; }
+.hero-badge{
+  display:inline-flex; align-items:center; gap:8px; background:rgba(201,151,47,0.15);
+  border:1px solid rgba(201,151,47,0.4); color:var(--gold); border-radius:30px;
+  padding:6px 16px; font-size:0.85rem; font-weight:600;
+}
+
+.chat-list{ max-height:70vh; overflow-y:auto; }
+.chat-bubble{ max-width:70%; padding:10px 14px; border-radius:14px; margin-bottom:8px; }
+.chat-bubble.mine{ background:var(--navy); color:#fff; margin-left:auto; }
+.chat-bubble.theirs{ background:var(--panel); color:var(--ink); }
+
+.form-label{ font-weight:600; color:var(--navy); }
+.invalid-feedback{ display:block; }
+.password-strength{ height:4px; border-radius:2px; background:#e5e5e5; overflow:hidden; }
+.password-strength-bar{ height:100%; width:0; transition:.3s; }
+
+footer.site-footer{ background:var(--navy-dark); color:#B9C2CE; }
+footer.site-footer a{ color:#D8CFB8; text-decoration:none;}
